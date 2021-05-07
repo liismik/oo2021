@@ -15,7 +15,7 @@ import java.util.List;
 public class WordCounter {
 
     List<String> files;
-    private static final String FILE_PATH = "Words.txt";
+    private static final String FILE_PATH = "TestWords.txt";
     public int threeLetterWordCounter = 0;
     public int otherLetterWordCounter = 0;
 
@@ -30,9 +30,7 @@ public class WordCounter {
             this.files = Files.readAllLines(Path.of(FILE_PATH));
             for (String line : this.files) {
                 line.split(" ");
-                System.out.println(line);
                 for (String word : line.split((" "))) {
-                    System.out.println(word);
                     if (stringValidation(word) && threeLetterWord(word)) {
                         threeLetterWordCounter++;
                     } else if (stringValidation(word)) {
@@ -48,8 +46,11 @@ public class WordCounter {
     }
 
     public boolean stringValidation(String word) {
+        System.out.println(word);
         return word.matches("^[a-zA-Z]*$");
     }
+
+    
 
     public boolean threeLetterWord(String word) {
         return word.length() == 3;
