@@ -41,28 +41,22 @@ public class WordCounter {
         }
     }
 
-    public boolean stringValidation(String word) {
-        System.out.println(word);
+    public void stringValidation(String word) {
         if (word.length() < 1) {
-            return false;
+            return;
         }
         char[] chararray = word.toCharArray();
-        if (Character.isLetter(chararray[chararray.length - 1])) {
-            if (word.length() == 3) {
-                threeLetterWordCounter++;
-            } else {
-                otherLetterWordCounter++;
+        int letterCounter = 0;
+        for (char Char : chararray) {
+            if (Character.isLetter(Char)) {
+                letterCounter++;
             }
-            return word.matches("^[a-zA-Z]*$");
         }
-        String wordSymbolsRemoved = new String(chararray);
-        wordSymbolsRemoved = wordSymbolsRemoved.substring(0, wordSymbolsRemoved.length() - 1);
-        if (wordSymbolsRemoved.length() == 3) {
+        if (letterCounter == 3) {
             threeLetterWordCounter++;
         } else {
             otherLetterWordCounter++;
         }
-        return wordSymbolsRemoved.matches("^[a-zA-Z]*$");
     }
 
     public List<String> getFiles() {
