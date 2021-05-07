@@ -65,12 +65,3 @@ public class WordCounter {
         return this.files;
     }
 }
-
-/*
-if(word.endsWith(".")) {
-                        word = word.substring(0, word.length() - 1);
-                    }
-                    if(word.endsWith(",")) {
-                        word = word.substring(0, word.length() - 1);
-                    }
-*/
