@@ -31,18 +31,7 @@ public class WordCounter {
             for (String line : this.files) {
                 line.split(" ");
                 for (String word : line.split((" "))) {
-                    if(word.endsWith(".")) {
-                        word = word.substring(0, word.length() - 1);
-                    }
-                    if(word.endsWith(",")) {
-                        word = word.substring(0, word.length() - 1);
-                    }
-
-                    if (stringValidation(word) && threeLetterWord(word)) {
-                        threeLetterWordCounter++;
-                    } else if (stringValidation(word)) {
-                        otherLetterWordCounter++;
-                    }
+                    stringValidation(word);
                 }
             }
             System.out.println("Three letter words: " + threeLetterWordCounter);
@@ -54,11 +43,26 @@ public class WordCounter {
 
     public boolean stringValidation(String word) {
         System.out.println(word);
-        return word.matches("^[a-zA-Z]*$");
-    }
-
-    public boolean threeLetterWord(String word) {
-        return word.length() == 3;
+        if (word.length() < 1) {
+            return false;
+        }
+        char[] chararray = word.toCharArray();
+        if (Character.isLetter(chararray[chararray.length - 1])) {
+            if (word.length() == 3) {
+                threeLetterWordCounter++;
+            } else {
+                otherLetterWordCounter++;
+            }
+            return word.matches("^[a-zA-Z]*$");
+        }
+        String wordSymbolsRemoved = new String(chararray);
+        wordSymbolsRemoved = wordSymbolsRemoved.substring(0, wordSymbolsRemoved.length() - 1);
+        if (wordSymbolsRemoved.length() == 3) {
+            threeLetterWordCounter++;
+        } else {
+            otherLetterWordCounter++;
+        }
+        return wordSymbolsRemoved.matches("^[a-zA-Z]*$");
     }
 
     public List<String> getFiles() {
