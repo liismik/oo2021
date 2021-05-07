@@ -15,7 +15,7 @@ import java.util.List;
 public class WordCounter {
 
     List<String> files;
-    private static final String FILE_PATH = "src/Words.txt";
+    private static final String FILE_PATH = "Words.txt";
 
     public static void main(String[] args) {
         WordCounter abc = new WordCounter();
@@ -29,6 +29,10 @@ public class WordCounter {
         } catch (Exception e) {
             throw new RuntimeException("Something went wrong: " + e);
         }
+    }
+
+    public boolean threeLetterWord(String word) {
+        return word.length() == 3;
     }
 
     public List<String> getFiles() {
